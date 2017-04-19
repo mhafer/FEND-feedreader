@@ -29,32 +29,26 @@ $(function() {
         });
 
 
-         /*TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a URL defined
-         * and that the URL is not empty.
-         */
+       
         it('Have Name Defined & not Empty', function(){
-            // go through each object in allFeeds
-            allFeeds.forEach(function(feedurl){
+            // go through each Feeds
+            allFeeds.forEach(function(feed){
                 // check that the url is there
-                expect(feedurl.url).toBeDefined();
+                expect(feed.url).toBeDefined();
                 // check that the url is not left empty
-                expect(feedurl.url).not.toBe('');
+                expect(feed.url).not.toBe('');
             });
         });
 
 
-        /* TODO: Write a test that loops through each feed
-         * in the allFeeds object and ensures it has a name defined
-         * and that the name is not empty.
-         */
+       
         it('has a name', function() {
-            // go through each object in allFeeds
-            allFeeds.forEach(function(feedName){
+            // go through each  Feeds
+            allFeeds.forEach(function(feed){
                 // check that the name is there
-                expect(feedName.name).toBeDefined();
+                expect(feed.name).toBeDefined();
                 // check that the name is not left empty
-                expect(feedName.name).not.toBe('');
+                expect(feed.name).not.toBe('');
             });
            
         });
@@ -120,7 +114,7 @@ $(function() {
          it('there is at least a single .entry element in the .feed container', function(done) {
                 // after loading the feed there should be at least 1 entry in the element
                 expect($('.feed .entry').length).toBeGreaterThan(0);
-                // make call done is required for async
+                // do not run the rest of code till done() is executed
                 done();
          });
 
@@ -138,7 +132,7 @@ $(function() {
             loadFeed(1, function() {
                 // store the value of one feed (feed[1]) in a variable
                 initialFeed = $('.feed').html();
-                // make call done is required for async
+                // do not run the rest of code till done() is executed
                 done();
             });
 
@@ -148,14 +142,14 @@ $(function() {
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-         it('changes content when new feed it loaded', function() {
+         it('changes content when new feed it loaded', function(done) {
 
            loadFeed(2, function() {
                 // load a differend feed (feed[2]) and store that in a second variable
                 newFeed = $('.feed').html();
                 // compare the two variable, they should not be equal to each other
                 expect(newFeed).not.toEqual(initialFeed);
-                // make call done is required for async
+               // do not run the rest of code till done() is executed
                 done();
             });
          });
