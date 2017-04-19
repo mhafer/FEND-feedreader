@@ -22,7 +22,7 @@ var allFeeds = [
         url: 'http://feeds.feedburner.com/udacity-linear-digressions'
     }
 ];
-
+  
 /* This function starts up our application. The Google Feed
  * Reader API is loaded asynchonously and will then call this
  * function when the API is loaded.
@@ -41,6 +41,7 @@ function init() {
  * which will be called after everything has run successfully.
  */
  function loadFeed(id, cb) {
+
      var feedUrl = allFeeds[id].url,
          feedName = allFeeds[id].name;
 
@@ -68,10 +69,12 @@ function init() {
                  entries.forEach(function(entry) {
                      container.append(entryTemplate(entry));
                  });
+        
+                  if (cb) {
+                      cb();
+                  }
+             
 
-                 if (cb) {
-                     cb();
-                 }
                },
        error: function (result, status, err){
                  //run only the callback without attempting to parse result due to error
@@ -86,6 +89,7 @@ function init() {
 /* Google API: Loads the Feed Reader API and defines what function
  * to call when the Feed Reader API is done loading.
  */
+
 google.setOnLoadCallback(init);
 
 /* All of this functionality is heavily reliant upon the DOM, so we
