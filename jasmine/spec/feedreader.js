@@ -114,7 +114,7 @@ $(function() {
          beforeEach(function(done) {
             // load feed[0]
             // call done() for async
-            loadFeed(0, done);
+            loadFeed(1, done);
          });
 
          it('there is at least a single .entry element in the .feed container', function(done) {
